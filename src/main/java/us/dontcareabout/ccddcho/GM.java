@@ -1,6 +1,9 @@
 package us.dontcareabout.ccddcho;
 
+import java.util.Random;
+
 public class GM {
+	private static final Random random = new Random();
 
 	/**
 	 * @return 不含鬼牌的一副牌
@@ -21,4 +24,16 @@ public class GM {
 		return result;
 	}
 
+	public static void shuffle(Card[] array) {
+		int last = array.length - 1;
+		int target;
+
+		while(last > 0) {
+			target = random.nextInt(last + 1);
+			Card tmp = array[last];
+			array[last] = array[target];
+			array[target] = tmp;
+			last--;
+		}
+	}
 }
