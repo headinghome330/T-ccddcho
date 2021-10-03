@@ -1,5 +1,7 @@
 package us.dontcareabout.ccddcho.util;
 
+import java.util.Scanner;
+
 import us.dontcareabout.ccddcho.Deck;
 
 public class ConsoleUtil {
@@ -26,5 +28,13 @@ public class ConsoleUtil {
 		System.out.println();
 
 		if (!flag) { System.out.println(); }
+	}
+
+	////////
+
+	private static Scanner scanner = new Scanner(System.in);
+
+	public static int numberInput() {
+		return scanner.nextInt();
 	}
 }
