@@ -14,6 +14,13 @@ public class Deck {
 	/**
 	 * 接收牌，放在牌庫底部。
 	 */
+	public void receive(Card card) {
+		cards.add(card);
+	}
+
+	/**
+	 * 接收牌，放在牌庫底部。
+	 */
 	public void receive(Card[] cards) {
 		receive(Arrays.asList(cards));
 	}
