@@ -64,6 +64,18 @@ public class Deck {
 		return cards.remove(index);
 	}
 
+	public void play(Card card) {
+		play(find(card));
+	}
+
+	public int find(Card card) {
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i).equals(card)) { return i; }
+		}
+
+		throw new IllegalArgumentException();
+	}
+
 	/**
 	 * @return 指定位置的牌，牌庫<b>**不會**</b>減少
 	 */
