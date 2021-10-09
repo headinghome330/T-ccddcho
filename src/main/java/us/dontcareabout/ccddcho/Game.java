@@ -8,9 +8,7 @@ import us.dontcareabout.ccddcho.util.CardUtil;
 public class Game {
 //	Player[] players;
 
-	//我她嗎就只讓兩個玩家玩！
-	ArrayList<Card>[] playerHand;
-	ArrayList<Card>[] playerScore;
+	PlayerInfo[] playerInfo;
 
 	List<Card> 暗牌庫;
 	List<Card> 明牌庫 = new ArrayList<>();
@@ -21,18 +19,15 @@ public class Game {
 	public Game(int n) {
 		暗牌庫 = CardUtil.genDeck();	//先不洗牌了幹
 
-		playerHand = new ArrayList[n];
-		playerScore = new ArrayList[n];
+		playerInfo = new PlayerInfo[n];
 
 		for (int i = 0; i < n; i++) {
-			playerHand[i] = new ArrayList<>();
+			playerInfo[i] = new PlayerInfo();
 
 			//發牌
 			for (int i2 = 0; i2 < 24 / n; i2++) {
-				playerHand[i].add(暗牌庫.remove(0));
+				playerInfo[i].handReceive(暗牌庫.remove(0));
 			}
-
-			playerScore[i] = new ArrayList<>();
 		}
 
 		//四張明牌
@@ -44,5 +39,14 @@ public class Game {
 	//偉大的案主口中的「遊戲怎麼進行」
 	public void start() {
 		//TODO
+	}
+	
+	private class PlayerInfo {
+		List<Card> hand = new ArrayList<>();
+		List<Card> score = new ArrayList<>();
+
+		public void handReceive(Card card) {
+			hand.add(card);
+		}
 	}
 }
