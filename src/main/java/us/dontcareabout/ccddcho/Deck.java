@@ -41,16 +41,16 @@ public class Deck {
 	/**
 	 * @return 出最上面 N 張牌，牌庫會減少
 	 */
-	public List<Card> deal(int amount) {
+	public Deck deal(int amount) {
 		//List<Card> result = cards.subList(0, amount);
 		//XXX 用這招，如果 Caller 是 Deck constructor
 		//會炸 ConcurrentModificationException，原因... 懶得追  [眼神死]
 		//所以還是自己乖乖建立 ArrayList instance...
 
-		ArrayList<Card> result = new ArrayList<>();
+		Deck result = new Deck();
 
 		for (int i = 0; i < amount; i++) {
-			result.add(cards.remove(0));
+			result.receive(cards.remove(0));
 		}
 
 		return result;
