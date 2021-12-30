@@ -7,7 +7,7 @@ public class Issue_3 {
 	 * @param c 個位數字
 	 * @return 傳回值為 a 的三次方 + b 的三次方 + c 的三次方
 	 */
-	public static double caculateArmstrong(double a, double b, double c) {
+	public static double threeCubedAndPlus(double a, double b, double c) {
 		return Math.pow(a, 3) + Math.pow(b, 3) + Math.pow(c, 3);
 	}
 
@@ -15,10 +15,9 @@ public class Issue_3 {
 	 * @param v 傳入數字
 	 * @return 次方計算結果
 	 */
-	public static double foo(int v) {
-		int power = 3;
-		double foo = Math.pow(v, power);
-		return foo;
+	public static double threeCubed(int v) {
+		double cubed = v * v * v; 
+		return cubed;
 	}
 
 	public static void main(String[] args) {
@@ -29,8 +28,7 @@ public class Issue_3 {
 		for (int c = 0; c <= 9; c++) {
 			for (int b = 0; b <= 9; b++) {
 				for (int a = 1; a <= 9; a++) {
-//					double k = caculateArmstrong(a, b, c);
-					double k = foo(a) + foo(b) + foo(c);
+					double k = threeCubed(a) + threeCubed(b) + threeCubed(c);
 					int m = a * 100 + b * 10 + c;
 					if (k == m) {
 						System.out.println(m);
@@ -45,8 +43,7 @@ public class Issue_3 {
 			int hundred = m / 100;
 			int ten = m % 100 / 10;
 			int each = m % 100 % 10;
-//			double k = caculateArmstrong(hundred, ten, each);
-			double k = foo(hundred) + foo(ten) + foo(each);
+			double k = threeCubed(hundred) + threeCubed(ten) + threeCubed(each);
 			if (k == m) {
 				System.out.println(m);
 			}
