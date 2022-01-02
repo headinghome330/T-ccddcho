@@ -8,35 +8,19 @@ public class Issue_11 {
 	public static void main(String[] args) {
 
 		int[] A = { 3, 6, 2, 1, 4, 4, 2, 1 };
-
-		for (int i = 1; i <= A.length; i++) {
-			for (int j = 0; j <= A.length; j++) {
-				if (headSum(i - 1, A) == tailSum(j, A)) {
-					System.out.println(tailSum(j, A));
+		int headSum = 0;
+		int tailSum = 0;
+		
+		for (int i = 0; i < A.length; i++) {
+			headSum += A[i];
+			for (int j = A.length - 1; j < A.length && j >= 0; j--) {
+				tailSum += A[j];
+				if (headSum == tailSum) {
+					System.out.println(headSum);
 				}
 			}
+			tailSum = 0;
 		}
-
+		
 	}
-
-	public static int headSum(int x, int[] A) {
-		int sum = 0;
-
-		for (int i = 0; i <= x; i++) {
-			sum += A[i];
-		}
-
-		return sum;
-	}
-
-	public static int tailSum(int y, int[] A) {
-		int sum = 0;
-
-		for (int i = y; i <= A.length - 1; i++) {
-			sum += A[i];
-		}
-
-		return sum;
-	}
-
 }
