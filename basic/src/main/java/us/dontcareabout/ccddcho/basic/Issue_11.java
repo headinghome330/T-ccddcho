@@ -8,11 +8,38 @@ public class Issue_11 {
 	public static void main(String[] args) {
 
 		int[] A = { 3, 6, 2, 1, 4, 4, 2, 1 };
+		System.out.println("version 1");
 		version1(A);
-		System.out.println();
+		System.out.println("version 2");
 		version2(A);
-		System.out.println();
+		System.out.println("version 3");
 		version3(A);
+		System.out.println("version 4");
+		version4(A);
+
+	}
+
+	public static void version4(int[] A) {
+		int headSum = A[0];
+		int tailSum = 0;
+
+		for (int i = 0, j = A.length - 1; i < A.length && j < A.length && j >= 0; j = (j == 0) ? A.length - 1 : --j) {
+			tailSum += A[j];
+
+			if (headSum == tailSum) {
+				System.out.println(headSum);
+			}
+
+			if (j == 0) {
+				if (i == A.length - 1) {
+					break;
+				} else {
+					++i;
+				}
+				headSum += A[i];
+				tailSum = 0;
+			}
+		}
 
 	}
 
