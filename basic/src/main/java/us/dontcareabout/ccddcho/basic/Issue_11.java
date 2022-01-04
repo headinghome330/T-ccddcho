@@ -16,7 +16,7 @@ public class Issue_11 {
 
 	}
 
-	public static int version3(int[] A) {
+	public static void version3(int[] A) {
 		int headSum = 0;
 		int tailSum = 0;
 
@@ -34,10 +34,9 @@ public class Issue_11 {
 			}
 		}
 
-		return headSum;
 	}
 
-	public static int version2(int[] A) {
+	public static void version2(int[] A) {
 		int headSum = 0;
 		int tailSum = 0;
 
@@ -52,10 +51,9 @@ public class Issue_11 {
 			tailSum = 0;
 		}
 
-		return headSum;
 	}
 
-	public static int version1(int[] A) {
+	public static void version1(int[] A) {
 		int tailSum = 0;
 
 		for (int i = 1; i <= A.length; i++) {
@@ -67,7 +65,6 @@ public class Issue_11 {
 			}
 		}
 
-		return tailSum;
 	}
 
 	public static int headSum(int x, int[] A) {
