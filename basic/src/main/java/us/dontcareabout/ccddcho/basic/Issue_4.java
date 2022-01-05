@@ -5,7 +5,7 @@ public class Issue_4 {
 	public static void main(String[] args) {
 		int n = 5;
 
-		System.out.println("for loop 金字塔1");
+		System.out.println("for loop 金字塔 1");
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j <= i; j++) {
@@ -22,7 +22,7 @@ public class Issue_4 {
 			System.out.printf("%n");
 		}
 
-		System.out.println("for loop 金字塔2");
+		System.out.println("for loop 金字塔 2");
 
 		for (int i = 1; i <= n && i > 0; i = (i == n) ? --n & --i : ++i) {
 			for (int j = 1; j <= i; j++) {
@@ -32,7 +32,7 @@ public class Issue_4 {
 		}
 
 		n = 5;
-		System.out.println("for loop 金字塔3");
+		System.out.println("for loop 金字塔 3");
 
 		for (int i = 1, j = n - 1; i <= n && j >= 0; i = (i == n) ? --n : ++i) {
 			String A = "*";
@@ -41,6 +41,55 @@ public class Issue_4 {
 				j--;
 			}
 		}
+		
+
+		n = 5;
+		System.out.println("解決醜迴圈但還是偷偷用repeat的 for loop 金字塔 4");
+
+		for (int i = 1, j = n - 1; i <= n && j >= 0; j--) {
+			String A ="*";
+			
+			System.out.println(A.repeat(i));
+
+			if (i == n) {
+				--n;
+				--i;
+				if (j == 0) {
+					j = n;
+				}
+			} else if (i < n) {
+				i++;
+			}
+
+		}
+
+	
+		n = 5;
+		System.out.println("🤯 for loop 金字塔 5");
+		String A = "*";
+		
+		for (int i = 1, j = n - 1; i <= n && j >= 0; j--) {
+
+			System.out.println(A);
+
+			if (i == n) {
+				--n;
+				--i;
+				j = n;
+				A = "";
+				if (j == n) {
+					for (j = n - 1; j >= 0; j--) {
+						A += "*";
+					}
+				}
+				j = n;
+			} else if (i < n) {
+				i++;
+				A += "*";
+			}
+
+		}
 		System.out.println();
 	}
+
 }
