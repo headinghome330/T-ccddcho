@@ -13,36 +13,41 @@ public class Issue_3 {
 	}
 
 	/**
-	 * @param v 傳入數字
-	 * @param p 次方整數
+	 * @param v 底數
+	 * @param p 次方數
 	 * @return v^p 數值
 	 */
-	public static double cubed(int v, int p) {
-		double Cubed = 1;
-		boolean b;
-		
-		for (int j = 1; b = (p >= 0) ? (j <= p) : (j <= -p); j++) {
-			if (j == 1 && p == 0) {
-				Cubed = 1;
-			} else if (b == (j <= p)) {
-				Cubed *= v;
-			} else if (b == (j >= p)) {
-				Cubed /= v;
-			}
+	public static double power(int v, int p) {
+		double power = 1;
+		for (int j = 1; j <= abs(p); j++) {
+
+			if (p >= 0) {
+				if (j == 1 && p == 0) {
+					power = 1;
+				} else {
+					power *= v;
+				}
+			} else if (p < 0)
+				power /= v;
 		}
 
-		return Cubed;
+		return power;
+	}
+
+	public static int abs(int a) {
+		return (a < 0) ? -a : a;
 	}
 
 	public static void main(String[] args) {
 		// Armstrong 數：一個三位數的正整數，假設百位數為 a、十位數為 b、個位數為 c，則滿足 a^3 + b^3 + c^3 = a*100 + b*10 + c 為 Armstrong 數。
-		
+		System.out.println(power(52, -2));
+
 		System.out.println("method 1");
 
 		for (int c = 0; c <= 9; c++) {
 			for (int b = 0; b <= 9; b++) {
 				for (int a = 1; a <= 9; a++) {
-					double k = cubed(a, 3) + cubed(b, 3) + cubed(c, 3);
+					double k = power(a, 3) + power(b, 3) + power(c, 3);
 					int m = a * 100 + b * 10 + c;
 					if (k == m) {
 						System.out.println(m);
@@ -57,7 +62,7 @@ public class Issue_3 {
 			int hundred = m / 100;
 			int ten = m % 100 / 10;
 			int each = m % 100 % 10;
-			double k = cubed(hundred, 3) + cubed(ten, 3) + cubed(each, 3);
+			double k = power(hundred, 3) + power(ten, 3) + power(each, 3);
 			if (k == m) {
 				System.out.println(m);
 			}
