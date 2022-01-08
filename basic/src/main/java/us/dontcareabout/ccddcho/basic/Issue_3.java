@@ -19,16 +19,11 @@ public class Issue_3 {
 	 */
 	public static double power(int v, int p) {
 		double power = 1;
-		for (int j = 1; j <= abs(p); j++) {
 
-			if (p >= 0) {
-				if (j == 1 && p == 0) {
-					power = 1;
-				} else {
-					power *= v;
-				}
-			} else if (p < 0)
-				power /= v;
+		for (int j = 0; j < abs(p); j++) {
+			if (p != 0) {
+				power = (p > 0) ? power * v : power / v;
+			}
 		}
 
 		return power;
@@ -40,7 +35,7 @@ public class Issue_3 {
 
 	public static void main(String[] args) {
 		// Armstrong 數：一個三位數的正整數，假設百位數為 a、十位數為 b、個位數為 c，則滿足 a^3 + b^3 + c^3 = a*100 + b*10 + c 為 Armstrong 數。
-		System.out.println(power(52, -2));
+		System.out.println(power(-2, 0));
 
 		System.out.println("method 1");
 
