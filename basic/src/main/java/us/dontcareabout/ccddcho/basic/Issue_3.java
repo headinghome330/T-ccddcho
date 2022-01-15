@@ -23,18 +23,14 @@ public class Issue_3 {
 		return (a < 0) ? -a : a;
 	}
 
-	public static void armstrong(int l) {
+	public static void armstrong(int t) {
+		double f = power(10, t);
 
-		for (int k = (int) power(10, l - 1); k < power(10, l); k++) {
-			double m = power((int) (k / power(10, l - 1)), l);
-			int temp = k;
-			for (int p = l - 1; p > 0; p--) {
-				int remainder = (int) (temp % power(10, p));
-				temp = remainder;
-				int quotient = (int) (remainder / power(10, p - 1));
-				m += power(quotient, l);
+		for (int k = (int) power(10, t - 1); k < f; k++) {
+			double m = 0;
+			for (int p = 0; p < t; p++) {
+				m += power(digit(k, p), t);
 			}
-
 			if (k == m) {
 				System.out.println(k);
 			}
@@ -42,6 +38,13 @@ public class Issue_3 {
 	}
 
 	public static void main(String[] args) {
-		armstrong(7);
+		armstrong(8);
 	}
+
+	public static int digit(int k, int p) {
+		int difference = (k - (k / (int) (power(10, p + 1)) * (int) power(10, p + 1)));
+		int result = (difference / (int) power(10, p));
+		return result;
+	}
+
 }
