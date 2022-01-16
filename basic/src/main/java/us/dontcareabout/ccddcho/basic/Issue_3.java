@@ -42,8 +42,9 @@ public class Issue_3 {
 	}
 
 	public static int digit(int k, int p) {
-		int difference = (k - (k / (int) (power(10, p + 1)) * (int) power(10, p + 1)));
-		int result = (difference / (int) power(10, p));
+		int power = (int) power(10, p + 1);
+		int difference = (k - (k / power * power));
+		int result = (difference / (power / 10));
 		return result;
 	}
 
