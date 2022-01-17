@@ -38,14 +38,11 @@ public class Issue_3 {
 	}
 
 	public static void main(String[] args) {
-		armstrong(8);
+		armstrong(3);
 	}
 
 	public static int digit(int k, int p) {
-		int power = (int) power(10, p + 1);
-		int difference = (k - (k / power * power));
-		int result = (difference / (power / 10));
-		return result;
+		return (int) ((k / power(10, p)) % 10);
 	}
 
 }
