@@ -9,6 +9,12 @@ public class IssueM24 {
 	private static final char[] p_n = new char[] {p, n};
 	private static final char[] m_d = new char[] {m, d};
 
+	private static final int left = -1;
+	private static final int right = 1;
+
+	private static final int char0 = 48;
+	private static final int char9 = 57;
+
 	private static int findMorD(char[] string) {
 		return find(string, m_d);
 	}
@@ -31,5 +37,28 @@ public class IssueM24 {
 		}
 
 		return -1;
+	}
+
+	private static int getNumBound(char[] string, int opIndex, int direction) {
+		//opIndex 一定不符合條件，所以先加一次 direction
+		for (int i = opIndex + direction; i >= 0 && i < string.length; i += direction) {
+			if (string[i] > char9 || string[i] < char0) {
+				return i - direction;
+			}
+		}
+
+		return -1;	//超出前提假設
+	}
+
+	private static int toNumber(char[] string, int bound1, int bound2) {
+		int min = Math.min(bound1, bound2);
+		int max = Math.max(bound1, bound2);
+		int result = 0;
+
+		for (int i = 0; i <= max - min; i++) {
+			result += (string[max - i] - char0) * Math.pow(10, i);
+		}
+
+		return result;
 	}
 }
