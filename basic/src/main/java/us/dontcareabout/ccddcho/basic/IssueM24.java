@@ -15,6 +15,28 @@ public class IssueM24 {
 	private static final int char0 = 48;
 	private static final int char9 = 57;
 
+	/**
+	 * @return 把 source 的 leftBound～rightBound 替換成 replaceNum 字串化後的 char
+	 */
+	private static char[] combine(char[] source, int leftBound, int rightBound, int replaceNum) {
+		char[] replaceCharArray = ("" + replaceNum).toCharArray();
+		char[] result = new char[source.length + replaceCharArray.length - rightBound + leftBound - 1];
+
+		for (int i = 0; i < leftBound; i++) {
+			result[i] = source[i];
+		}
+
+		for (int i = 0; i < replaceCharArray.length; i++) {
+			result[leftBound + i] = replaceCharArray[i];
+		}
+
+		for (int i = 1; i < source.length - rightBound; i++) {
+			result[leftBound + replaceCharArray.length + i - 1] = source[rightBound + i];
+		}
+
+		return result;
+	}
+
 	private static int findMorD(char[] string) {
 		return find(string, m_d);
 	}
