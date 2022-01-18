@@ -15,6 +15,23 @@ public class IssueM24 {
 	private static final int char0 = 48;
 	private static final int char9 = 57;
 
+	public static double calculate(String string) {
+		return calculate(string.toCharArray());
+	}
+
+	private static double calculate(char[] string) {
+		int opIndex = findMorD(string);
+
+		if (opIndex == -1) {
+			opIndex = findPorN(string);
+		}
+		if (opIndex == -1) {
+			return toNumber(string);
+		}
+
+		return calculate(operate(string, opIndex));
+	}
+
 	/**
 	 * @return 把 source 的 leftBound～rightBound 替換成 replaceNum 字串化後的 char
 	 */
@@ -72,6 +89,22 @@ public class IssueM24 {
 
 		//會到這來就表示找到底 or 找到頭了，所以一樣往回一格
 		return i - direction;
+	}
+
+	private static char[] operate(char[] string, int opIndex) {
+		int leftBound = getNumBound(string, opIndex, left);
+		int rightBound = getNumBound(string, opIndex, right);
+		int leftNum = toNumber(string, opIndex + left, leftBound);
+		int rightNum = toNumber(string, opIndex + right, rightBound);
+		int result = 0;
+
+		switch(string[opIndex]) {
+		case '+': result = leftNum + rightNum; break;
+		case '-': result = leftNum - rightNum; break;
+		case '*': result = leftNum * rightNum; break;
+		}
+
+		return combine(string, leftBound, rightBound, result);
 	}
 
 	private static int toNumber(char[] string) {
