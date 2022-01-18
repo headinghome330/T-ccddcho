@@ -63,13 +63,19 @@ public class IssueM24 {
 
 	private static int getNumBound(char[] string, int opIndex, int direction) {
 		//opIndex 一定不符合條件，所以先加一次 direction
-		for (int i = opIndex + direction; i >= 0 && i < string.length; i += direction) {
+		int i = opIndex + direction;
+		for (; i >= 0 && i < string.length; i += direction) {
 			if (string[i] > char9 || string[i] < char0) {
 				return i - direction;
 			}
 		}
 
-		return -1;	//超出前提假設
+		//會到這來就表示找到底 or 找到頭了，所以一樣往回一格
+		return i - direction;
+	}
+
+	private static int toNumber(char[] string) {
+		return toNumber(string, 0, string.length - 1);
 	}
 
 	private static int toNumber(char[] string, int bound1, int bound2) {
