@@ -1,8 +1,8 @@
 package us.dontcareabout.ccddcho.basic.Issue_15;
 
 /**
- * 因為在原本的版本 L30、L31 不需要寫，每次的傳入都會 initial
- *
+ * 1.因為在原本版本的 L30、L31 不需要寫，每次傳進去都會指定 v1 = a0 , v2 = a1
+ * 2.在迴圈內做 if else 條件判斷，n >= 2才需要用到迴圈條件
  */
 public class Fib1 {
 
@@ -18,20 +18,21 @@ public class Fib1 {
 		int result = 0;
 		int v1 = a0;
 		int v2 = a1;
-		
-		
+
 		if (n == 0) {
 			return v1;
-		} else if (n == 1) {
+		}
+		if (n == 1) {
 			return v2;
-		} else {
-			for (int i = 2; i <= n; i++) {
-				result = v1 + v2;
-				v1 = v2;
-				v2 = result;
-			}
-			return result;
 		}
 
+		for (int i = 2; i <= n; i++) {
+			result = v1 + v2;
+			v1 = v2;
+			v2 = result;
+		}
+
+		return result;
 	}
+
 }
