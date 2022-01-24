@@ -1,8 +1,8 @@
 package us.dontcareabout.ccddcho.basic.Issue_15;
 
 /**
- * 1.因為在原本版本的 L30、L31 不需要寫，每次傳進去都會指定 v1 = a0 , v2 = a1
- * 2.在迴圈內做 if else 條件判斷，n >= 2才需要用到迴圈條件
+ * 1.不應該使用 field 在迴圈內運算，使用 local vaiable 就可以避免多餘程式碼
+ * 2.在迴圈內做 if else 條件判斷，n >= 2 才需要用到迴圈條件
  */
 public class Fib1 {
 
@@ -15,16 +15,20 @@ public class Fib1 {
 	}
 
 	public int fibonacci(int n) {
-		int result = 0;
-		int v1 = a0;
-		int v2 = a1;
 
 		if (n == 0) {
-			return v1;
+			return a0;
 		}
+
 		if (n == 1) {
-			return v2;
+			return a1;
 		}
+		
+		return calFibonacci(a0, a1, n);
+	}
+
+	private static int calFibonacci(int v1, int v2, int n) {
+		int result = 0;
 
 		for (int i = 2; i <= n; i++) {
 			result = v1 + v2;
