@@ -10,6 +10,10 @@ public class Issue_24 {
 		System.out.println(calculate("1+28*130*22-5*5*5"));
 	}
 
+	/**
+	 * @param k int陣列中'*'的位置
+	 * @return 計算字串的operator皆為'*'時，將其計算後轉換為新陣列
+	 */
 	private static int[] transformSingleOperator(int[] a, int k) {
 		for (int i = k; i < a.length; i += 2) {
 			a[k - 1] *= a[i + 1];
@@ -20,6 +24,9 @@ public class Issue_24 {
 		return a;
 	}
 
+	/**
+	 * @return int陣列中operator的個數
+	 */
 	private static int operatorSize(int[] a) {
 		int m = 0;
 
@@ -32,7 +39,11 @@ public class Issue_24 {
 		return m;
 	}
 
-	private static int[] transformMutilOperator(int[] a, int k) {
+	/**
+	 * @param k int陣列中'*'的位置
+	 * @return int陣列中有'*'、+'、'-'等多種operator時，將其計算後轉換為新陣列
+	 */
+	private static int[] transformMultiOperator(int[] a, int k) {
 		int m = a.length;
 		for (int i = k; i < m; i += 2) {
 			if (a[i] != '*') {
@@ -58,6 +69,10 @@ public class Issue_24 {
 		return a;
 	}
 
+	/**
+	 * @param k int陣列中'*'的位置
+	 * @return int陣列中'*'為最後一種類的operator時，計算k位置開始到最後共有幾個'*' 
+	 */
 	private static int operatorSize(int[] a, int k) {
 		int m = 0;
 
@@ -70,11 +85,15 @@ public class Issue_24 {
 		return m;
 	}
 
+	/**
+	 * @param k int陣列中的'*'位置
+	 * @return 將int陣列計算並轉換後的新int陣列
+	 */
 	private static int[] transformOperator(int[] a, int k) {
 		if (a.length / 2 == operatorSize(a)) {
 			a = transformSingleOperator(a, k);
 		} else {
-			a = transformMutilOperator(a, k);
+			a = transformMultiOperator(a, k);
 		}
 
 		return a;
@@ -82,6 +101,7 @@ public class Issue_24 {
 
 	public static int calculate(String string) {
 		int[] a = transform(string.toCharArray());
+		
 		for (int i = 0; i < a.length; i++) {
 			if (a[i] == '*') {
 				a = transformOperator(a, i);
@@ -103,6 +123,9 @@ public class Issue_24 {
 		return m;
 	}
 
+	/**
+	 * @return 依照operand及operator，將char陣列轉換為int陣列
+	 */
 	private static int[] transform(char[] c) {
 		int operand;
 		int operandLength;
@@ -134,6 +157,13 @@ public class Issue_24 {
 		return a;
 	}
 
+	/**
+	 * @param c	字元陣列
+	 * @param indexOperator 字元陣列中某位置的operator
+	 * @param digit operand的位數
+	 * @param orderOperand 字元陣列中某operand的第一個數字
+	 * @return
+	 */
 	private static int calOperand(char[] c, int indexOperator, int digit, int orderOperand) {
 		int value = 0;
 		int intOperand = 0;
@@ -152,6 +182,9 @@ public class Issue_24 {
 
 	}
 
+	/**
+	 * @return 最後一個operator的位置
+	 */
 	private static int lastOperatorIndex(char[] c) {
 		int k = 0;
 
@@ -164,6 +197,9 @@ public class Issue_24 {
 		return k;
 	}
 
+	/**
+	 * @return 將c陣列轉換為int陣列後的長度
+	 */
 	private static int size(char[] c) {
 		int k = 0;
 
@@ -176,6 +212,9 @@ public class Issue_24 {
 		return k + (k + 1);
 	}
 
+	/**
+	 * @return 將char陣列的operator加入到int陣列中的相對位置
+	 */
 	private static int[] addOperatorIndex(int[] a, char[] c) {
 		int indexOfA = 1;
 		int indexOperator = 0;
