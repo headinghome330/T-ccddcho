@@ -12,7 +12,9 @@ public class Tester {
 		System.out.println(stack.pop()); // 要印出 940
 		System.out.println(stack.pop()); // 要印出 9487
 		System.out.println(stack.pop()); // 要印出 100
-
+		System.out.println(stack.empty());
+		System.out.println(stack.peek());
+		
 	}
 
 }
