@@ -1,42 +1,32 @@
 package us.dontcareabout.ccddcho.basic.Issue_15;
 
-/**
- * 1.不應該使用 field 在迴圈內運算，使用 local vaiable 就可以避免多餘程式碼
- * 2.在迴圈內做 if else 條件判斷，n >= 2 才需要用到迴圈條件
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Fib1 {
 
-	private final int a0;
-	private final int a1;
+	ArrayList<Integer> list = new ArrayList<>();
 
 	public Fib1(int a0, int a1) {
-		this.a0 = a0;
-		this.a1 = a1;
+		list = new ArrayList<>(Arrays.asList(a0, a1));
 	}
 
 	public int fibonacci(int n) {
 
 		if (n == 0) {
-			return a0;
-		}
-
-		if (n == 1) {
-			return a1;
+			return list.get(n);
 		}
 		
-		return calFibonacci(a0, a1, n);
-	}
+		if (n >= list.size()) {
 
-	private static int calFibonacci(int v1, int v2, int n) {
-		int result = 0;
+			for (int i = list.size(); i <= n; i++) {
+				Integer result ;
+				result = list.get(i - 2) + list.get(i - 1);
+				list.add(i, result);
+			}
 
-		for (int i = 2; i <= n; i++) {
-			result = v1 + v2;
-			v1 = v2;
-			v2 = result;
 		}
 
-		return result;
+		return list.get(list.size() - 1);
 	}
-
 }
