@@ -9,12 +9,17 @@ public class Tester {
 		System.out.println(stack.pop()); // 要印出 5566
 		stack.push(9487);
 		stack.push(940);
+		System.out.println(stack.peek());// 要印出 940
 		System.out.println(stack.pop()); // 要印出 940
 		System.out.println(stack.pop()); // 要印出 9487
+		stack.push(555);
+		stack.push(333);
+		System.out.println(stack.pop()); // 要印出 333
+		System.out.println(stack.pop()); // 要印出 555
+		System.out.println(stack.peek());// 要印出 100
 		System.out.println(stack.pop()); // 要印出 100
-		System.out.println(stack.empty());
-		System.out.println(stack.peek());
-		
+		System.out.println(stack.isEmpty());
+		System.out.println(stack.peek());// exception
 	}
 
 }

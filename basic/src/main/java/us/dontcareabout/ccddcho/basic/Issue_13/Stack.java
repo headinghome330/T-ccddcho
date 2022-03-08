@@ -1,42 +1,47 @@
 package us.dontcareabout.ccddcho.basic.Issue_13;
 
+import java.util.EmptyStackException;
+
 public class Stack {
 
-	private int[] result;
+	private int[] result = new int[0];
 	private int size;
 
 	public int pop() {
 		size--;
 
 		if (size < 0) {
-			throw new ArrayIndexOutOfBoundsException(size);
+			throw new EmptyStackException();
 		}
 
 		return result[size];
 	}
 
 	public void push(int k) {
-		// 當 pop 完整個 array 後，整理不會用到的記憶體
-		if (size == 0) {
-			result = new int[0];
-		}
-
 		size++;
 
-		if (size > result.length) {
-			add(k);
-		}
-
-		// 表示有 pop 過
-		if (size == result.length) {
+		if (size <= result.length) {
 			result[size - 1] = k;
 		}
 
+		if (size > result.length) {
+			add();
+			result[result.length - 1] = k;
+		}
 	}
 
-	private void add(int k) {
+	public void reduce() {
+		int[] a = new int[size];
+		
+		for (int i = 0; i < a.length; i++) {
+			a[i] = result[i];
+		}
+
+		result = a;
+	}
+
+	private void add() {
 		int[] a = new int[result.length + 1];
-		a[a.length - 1] = k;
 
 		for (int i = 0; i < result.length; i++) {
 			a[i] = result[i];
@@ -44,14 +49,21 @@ public class Stack {
 
 		result = a;
 	}
-	
+
 	public int peek() {
-		return result[result.length - 1];
+		if (size == 0) {
+			throw new EmptyStackException();
+		}
+
+		if (size >= result.length) {
+			return result[result.length - 1];
+		}
+
+		return result[size - 1];
 	}
-	
-	public boolean empty() {
+
+	public boolean isEmpty() {
 		return size == 0;
 	}
-	
-	
+
 }
