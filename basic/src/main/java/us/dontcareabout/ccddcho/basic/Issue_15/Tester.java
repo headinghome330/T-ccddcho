@@ -12,9 +12,6 @@ public class Tester {
 		System.out.println(fib.fibonacci(2));
 		System.out.println(fib.fibonacci(2));
 		System.out.println(fib.fibonacci(3));
-		System.out.println(fib.fibonacci(4));
-		System.out.println(fib.fibonacci(5));
-		System.out.println(fib.fibonacci(6));
 	}
 
 }
