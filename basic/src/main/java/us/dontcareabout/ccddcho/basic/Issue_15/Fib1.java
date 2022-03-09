@@ -13,20 +13,16 @@ public class Fib1 {
 	}
 
 	public int fibonacci(int n) {
-		
+
 		if (n < list.size()) {
 			return list.get(n);
 		}
 
-		if (n >= list.size()) {
-			
-			for (int i = list.size(); i <= n; i++) {
-				list.add(i, list.get(i - 2) + list.get(i - 1));
-			}
-			
-			return list.get(list.size() - 1);
+		for (int i = list.size(); i <= n; i++) {
+			list.add(list.get(i - 2) + list.get(i - 1));
 		}
 
-		return -1;
+		return list.get(list.size() - 1);
+
 	}
 }
