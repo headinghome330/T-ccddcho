@@ -6,6 +6,7 @@ public class Tester {
 		System.out.println(FibR.fibonacci(0, 1, 8));
 
 		Fib1 fib = new Fib1(1, 2);
+		
 		System.out.println(fib.fibonacci(0));
 		System.out.println(fib.fibonacci(1));
 		System.out.println(fib.fibonacci(2));
