@@ -2,7 +2,7 @@ package us.dontcareabout.ccddcho.basic.Issue_13;
 
 import java.util.EmptyStackException;
 
-public class Stack {
+public class Stack implements IStack {
 
 	private int[] result = new int[1];
 	private int size;
