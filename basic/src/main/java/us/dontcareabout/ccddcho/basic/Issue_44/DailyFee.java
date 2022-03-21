@@ -1,11 +1,15 @@
 package us.dontcareabout.ccddcho.basic.Issue_44;
 
 public class DailyFee {
-	public Meals mealF = new Meals("free");
+	private Meals mealC;
+	private Meals mealF = new Meals("free");
 
 	public DailyFee() {
-		mealF = new Meals();
+		mealC = new Meals();
 	}
 
+	public static void main(String[] args) {
+		new DailyFee();
+	}
 }
 
