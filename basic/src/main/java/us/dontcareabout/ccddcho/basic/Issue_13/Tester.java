@@ -10,7 +10,6 @@ public class Tester {
 		stack.push(9487);
 		stack.push(940);
 		System.out.println(stack.peek());// 要印出 940
-		stack.reduce();
 		System.out.println(stack.pop()); // 要印出 940
 		System.out.println(stack.pop()); // 要印出 9487
 		stack.push(555);

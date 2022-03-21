@@ -10,6 +10,4 @@ public interface IStack {
 	
 	boolean isEmpty();
 	
-	void reduce();
-	
 }
