@@ -6,8 +6,6 @@ public class Meals {
 	}
 
 	public Meals(String k) {
-		if ("free".equals(k)) {
-			System.out.println("Field new instance first.Meals are free!");
-		}
+		System.out.println("Field new instance first.Meals are free!");
 	}
 }
