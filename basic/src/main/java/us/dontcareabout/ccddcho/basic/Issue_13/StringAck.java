@@ -8,31 +8,28 @@ public class StringAck implements IStack {
 
 	@Override
 	public void push(int k) {
-		if (!"".equals(s)) {
-			s += ",";
+		if (commaIndex <= 0) {
+			s = String.valueOf(k);
 		}
-		s += String.valueOf(k);
-		commaIndex = s.lastIndexOf(",");
-	}
 
-	private void reduce() {
-		s = s.substring(0, commaIndex);
-		commaIndex = s.lastIndexOf(",", s.lastIndexOf(","));
+		if (commaIndex > 0) {
+			s = s.substring(0, commaIndex) + "," + String.valueOf(k);
+		}
+
+		commaIndex = s.length();
 	}
 
 	@Override
 	public int pop() {
-		int popElement;
+
 		if (commaIndex > 0) {
-			popElement = Integer.valueOf(s.substring(commaIndex + 1, s.length()));
-			reduce();
+			int popElement = Integer.valueOf(s.substring(s.lastIndexOf(",", commaIndex - 1) + 1, commaIndex));
+			commaIndex = s.lastIndexOf(",", commaIndex - 1);
 			return popElement;
 		}
-
+		
 		if (commaIndex == -1 && s.length() > 0) {
-			popElement = Integer.valueOf(s);
-			s = "";
-			return popElement;
+			return Integer.valueOf(s.substring(0, s.indexOf(",")));
 		}
 
 		throw new EmptyStackException();
@@ -44,12 +41,12 @@ public class StringAck implements IStack {
 			throw new EmptyStackException();
 		}
 
-		return Integer.valueOf(s.substring(commaIndex + 1));
+		return Integer.valueOf(s.substring(s.lastIndexOf(",", commaIndex - 1) + 1, commaIndex));
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return s.equals("");
+		return commaIndex == -1;
 	}
 
 }
