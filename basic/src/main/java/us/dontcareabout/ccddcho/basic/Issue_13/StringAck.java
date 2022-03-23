@@ -8,16 +8,21 @@ public class StringAck implements IStack {
 
 	@Override
 	public void push(int k) {
+		if (s.length() > commaIndex) {
+			s = s.substring(0, commaIndex) + "," + k;
+		}
+		
 		if (commaIndex <= 0) {
-			s = String.valueOf(k);
+			s += k;
 		}
-
-		if (commaIndex > 0) {
-			s = s.substring(0, commaIndex) + "," + String.valueOf(k);
+		
+		if (s.length() == commaIndex) {
+			s += "," + k;
 		}
-
+		
 		commaIndex = s.length();
 	}
+
 
 	@Override
 	public int pop() {
@@ -27,7 +32,7 @@ public class StringAck implements IStack {
 			commaIndex = s.lastIndexOf(",", commaIndex - 1);
 			return popElement;
 		}
-		
+
 		if (commaIndex == -1 && s.length() > 0) {
 			return Integer.valueOf(s.substring(0, s.indexOf(",")));
 		}
