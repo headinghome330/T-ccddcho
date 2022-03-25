@@ -4,54 +4,52 @@ import java.util.EmptyStackException;
 
 public class StringAck implements IStack {
 	private String s = "";
-	private int commaIndex;
+	private int size;
 
 	@Override
 	public void push(int k) {
-		if (s.length() > commaIndex) {
-			s = s.substring(0, commaIndex) + "," + k;
-		}
-		
-		if (commaIndex <= 0) {
-			s += k;
-		}
-		
-		if (s.length() == commaIndex) {
-			s += "," + k;
-		}
-		
-		commaIndex = s.length();
-	}
+		size++;
 
+		if (!"".equals(s)) {
+			s += ",";
+		}
+		
+		s += k;
+	}
 
 	@Override
 	public int pop() {
+		size--;
 
-		if (commaIndex > 0) {
-			int popElement = Integer.valueOf(s.substring(s.lastIndexOf(",", commaIndex - 1) + 1, commaIndex));
-			commaIndex = s.lastIndexOf(",", commaIndex - 1);
-			return popElement;
+		if (size < 0) {
+			throw new EmptyStackException();
 		}
-
-		if (commaIndex == -1 && s.length() > 0) {
-			return Integer.valueOf(s.substring(0, s.indexOf(",")));
+		
+		int popElement = Integer.valueOf(s.substring(s.lastIndexOf(",", s.length()) + 1));
+		
+		if (size != 0) {
+			s = s.substring(0, s.lastIndexOf(",", s.length()));
 		}
-
-		throw new EmptyStackException();
+		
+		if (size == 0) {
+			s = "";			
+		}
+		
+		return popElement;
 	}
 
 	@Override
 	public int peek() {
-		if (commaIndex == -1 && s.length() < 0 || commaIndex == 0) {
+		if (size == 0) {
 			throw new EmptyStackException();
 		}
 
-		return Integer.valueOf(s.substring(s.lastIndexOf(",", commaIndex - 1) + 1, commaIndex));
+		return Integer.valueOf(s.substring(s.lastIndexOf(",", s.length()) + 1));
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return commaIndex == -1;
+		return size == 0;
 	}
 
 }
