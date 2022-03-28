@@ -5,51 +5,46 @@ import java.util.EmptyStackException;
 public class StringAck implements IStack {
 	private String s = "";
 	private int size;
+	private static final String comma = ",";
 
 	@Override
 	public void push(int k) {
 		size++;
-
-		if (!"".equals(s)) {
-			s += ",";
-		}
-		
-		s += k;
+		s = s + k + comma;
 	}
 
 	@Override
 	public int pop() {
+		int popElement = result();
 		size--;
 
-		if (size < 0) {
+		if (!isEmpty()) {
+			s = s.substring(0, s.lastIndexOf(comma, s.length() - 2) + 1);
+		}
+
+		if (isEmpty()) {
+			s = "";
+		}
+
+		return popElement;
+	}
+
+	private int result() {
+		if (isEmpty()) {
 			throw new EmptyStackException();
 		}
-		
-		int popElement = Integer.valueOf(s.substring(s.lastIndexOf(",", s.length()) + 1));
-		
-		if (size != 0) {
-			s = s.substring(0, s.lastIndexOf(",", s.length()));
-		}
-		
-		if (size == 0) {
-			s = "";			
-		}
-		
-		return popElement;
+
+		return Integer.valueOf(s.substring(s.lastIndexOf(comma, s.length() - 2) + 1, s.length() - 1));
 	}
 
 	@Override
 	public int peek() {
-		if (size == 0) {
-			throw new EmptyStackException();
-		}
-
-		return Integer.valueOf(s.substring(s.lastIndexOf(",", s.length()) + 1));
+		return result();
 	}
 
 	@Override
 	public boolean isEmpty() {
 		return size == 0;
 	}
-
+	
 }
