@@ -15,21 +15,21 @@ public class StringAck implements IStack {
 
 	@Override
 	public int pop() {
-		int popElement = result();
+		int popElement = peek();
 		size--;
 
 		if (!isEmpty()) {
 			s = s.substring(0, s.lastIndexOf(comma, s.length() - 2) + 1);
-		}
-
-		if (isEmpty()) {
+		} else {
 			s = "";
 		}
 
 		return popElement;
 	}
 
-	private int result() {
+
+	@Override
+	public int peek() {
 		if (isEmpty()) {
 			throw new EmptyStackException();
 		}
@@ -38,13 +38,8 @@ public class StringAck implements IStack {
 	}
 
 	@Override
-	public int peek() {
-		return result();
-	}
-
-	@Override
 	public boolean isEmpty() {
 		return size == 0;
 	}
-	
+
 }
